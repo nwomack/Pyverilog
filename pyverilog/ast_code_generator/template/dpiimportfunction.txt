@@ -1,0 +1,4 @@
+import "DPI-C" context function void {{ name }}
+(
+{{ portlist }}
+);

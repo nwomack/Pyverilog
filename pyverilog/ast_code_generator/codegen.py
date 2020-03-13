@@ -903,6 +903,17 @@ class ASTCodeGenerator(ConvertVisitor):
         rslt = template.render(template_dict)
         return rslt
 
+    def visit_DpiImportFunction(self, node):
+        filename = getfilename(node)
+        template = self.get_template(filename)
+        portlist = self.indent(self.visit(node.portlist)) if node.portlist is not None else ''
+        template_dict = {
+            'name': escape(node.name),
+            'portlist': portlist
+        }
+        rslt = template.render(template_dict)
+        return rslt
+
     def visit_FunctionCall(self, node):
         filename = getfilename(node)
         template = self.get_template(filename)

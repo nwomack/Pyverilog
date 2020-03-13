@@ -1280,3 +1280,21 @@ class EmbeddedCode(Node):
     def children(self):
         nodelist = []
         return tuple(nodelist)
+
+
+class DpiImportFunction(Node):
+    attr_names = ('name',)
+
+    def __init__(self, name, portlist, lineno=0):
+        self.lineno = lineno
+        self.name = name
+        self.portlist = portlist
+
+    def children(self):
+        nodelist = []
+        if self.portlist:
+            nodelist.append(self.portlist)
+        return tuple(nodelist)
+
+    def __repr__(self):
+        return self.name.__repr__()

@@ -60,7 +60,11 @@ class VerilogParser(PLYParser):
             module=self,
             method="LALR",
             outputdir=outputdir,
-            debug=debug
+
+            ## This is Ugly, temp workaround for race issue
+            ## not even sure why picklefile effects functionality
+            debug=False,
+            picklefile="parsetab.py"
         )
 
     def _lexer_error_func(self, msg, line, column):
